@@ -1,0 +1,40 @@
+{
+  "name": "@nestjs-modular/provider",
+  "version": "1.0.0",
+  "description": "NestJS module to register providers in bulk by specifying directories.",
+  "main": "dist/nestjs-modular-provider.cjs.js",
+  "module": "dist/nestjs-modular-provider.esm.js",
+  "types": "dist/nestjs-modular-provider.cjs.d.ts",
+  "files": [
+    "src",
+    "dist",
+    "LICENSE",
+    "README.md"
+  ],
+  "keywords": [
+    "typescript",
+    "nestjs",
+    "module",
+    "provider",
+    "export"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Karibash/nestjs-modular.git"
+  },
+  "author": "Karibash",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Karibash/nestjs-modular/issues"
+  },
+  "homepage": "https://github.com/Karibash/nestjs-modular/tree/main/packages/provider",
+  "dependencies": {
+    "@babel/runtime": "^7.18.3"
+  },
+  "devDependencies": {
+    "typescript": "^4.7.2"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
