@@ -8,6 +8,7 @@ import { AppController } from './app.controller';
   imports: [
     ProviderModule.forRootAsync({
       path: path.resolve(__dirname, '../../services'),
+      needsExport: true,
       fileNameRegExp: /service.(ts|js)$/,
       exportNameRegExp: /Service$/,
     }),

@@ -3,6 +3,7 @@ import fs from 'fs/promises';
 
 export type ProviderModuleOptions = Pick<DynamicModule, 'global'> & {
   path: string;
+  needsExport?: boolean;
   fileNameRegExp?: RegExp;
   exportNameRegExp?: RegExp;
 };
@@ -36,7 +37,7 @@ export class ProviderModule {
       ...options,
       module: ProviderModule,
       providers: providers,
-      exports: providers,
+      exports: ((options.needsExport ?? false) && providers) || undefined,
     };
   }
 }
