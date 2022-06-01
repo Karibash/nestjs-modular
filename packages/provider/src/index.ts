@@ -1,5 +1,14 @@
 import { DynamicModule, Module, Provider } from '@nestjs/common';
-import fs from 'fs/promises';
+import { readdir } from 'fs/promises';
+
+const getFilePaths = async (path: string): Promise<string[]> => {
+  const dirents = await readdir(path, { withFileTypes: true });
+  const files = await Promise.all(dirents.map(dirent => {
+    const result = `${path}/${dirent.name}`;
+    return dirent.isDirectory() ? getFilePaths(result) : result;
+  }));
+  return files.flat();
+};
 
 export type ProviderModuleOptions = Pick<DynamicModule, 'global'> & {
   path: string;
@@ -17,12 +26,12 @@ export class ProviderModule {
     exportNameRegExp,
     ...options
   }: ProviderModuleOptions): Promise<DynamicModule> {
-    const fileNames = await fs.readdir(path);
+    const filePaths = await getFilePaths(path);
 
     const modules = await Promise.all(
-      fileNames
-        .filter(name => fileNameRegExp?.test(name) ?? true)
-        .map(name => `${path}/${name.replace(/.(js|ts)$/, '')}`)
+      filePaths
+        .filter(value => fileNameRegExp?.test(value) ?? true)
+        .map(value => value.replace(/\.[^/.]+$/, ''))
         .map<unknown>(async path => await import(path)),
     );
 
