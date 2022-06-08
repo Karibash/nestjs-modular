@@ -1,5 +1,6 @@
 import { DynamicModule, Module, Provider } from '@nestjs/common';
 import { readdir } from 'fs/promises';
+import { parse } from 'path';
 
 const getFilePaths = async (path: string): Promise<string[]> => {
   const dirents = await readdir(path, { withFileTypes: true });
@@ -14,6 +15,7 @@ export type ProviderModuleOptions = Pick<DynamicModule, 'global'> & {
   path: string;
   needsExport?: boolean;
   fileNameRegExp?: RegExp;
+  fileExtensionRegExp?: RegExp;
   exportNameRegExp?: RegExp;
 };
 
@@ -22,7 +24,8 @@ export class ProviderModule {
   static async forRootAsync({
     path,
     needsExport = false,
-    fileNameRegExp = /(?<!.*\.(test|d))\.(js|ts)$/,
+    fileNameRegExp = /^(?!.*\.(test|d)$).+$/,
+    fileExtensionRegExp = /^\.(js|ts)$/,
     exportNameRegExp,
     ...options
   }: ProviderModuleOptions): Promise<DynamicModule> {
@@ -30,7 +33,13 @@ export class ProviderModule {
 
     const modules = await Promise.all(
       filePaths
-        .filter(value => fileNameRegExp?.test(value) ?? true)
+        .filter(value => {
+          const parsed = parse(value);
+          return (
+            (fileNameRegExp?.test(parsed.name) ?? true) &&
+            (fileExtensionRegExp?.test(parsed.ext) ?? true)
+          );
+        })
         .map(value => value.replace(/\.[^/.]+$/, ''))
         .map<unknown>(async path => await import(path)),
     );
