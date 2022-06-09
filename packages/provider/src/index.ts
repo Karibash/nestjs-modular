@@ -11,12 +11,25 @@ const getFilePaths = async (path: string): Promise<string[]> => {
   return files.flat();
 };
 
+const someTests = (value: string, terms: Array<string | RegExp>, _default: boolean): boolean => {
+  if (terms.length <= 0) return _default;
+  return terms.some(term => {
+    if (typeof term === 'string') {
+      return term === value;
+    }
+    return term.test(value);
+  });
+};
+
 export type ProviderModuleOptions = Pick<DynamicModule, 'global'> & {
   path: string;
   needsExport?: boolean;
-  fileNameRegExp?: RegExp;
-  fileExtensionRegExp?: RegExp;
-  exportNameRegExp?: RegExp;
+  includeFileNames?: Array<string | RegExp>;
+  excludeFileNames?: Array<string | RegExp>;
+  includeFileExtensions?: Array<string | RegExp>;
+  excludeFileExtensions?: Array<string | RegExp>;
+  includeExportNames?: Array<string | RegExp>;
+  excludeExportNames?: Array<string | RegExp>;
 };
 
 @Module({})
@@ -24,9 +37,12 @@ export class ProviderModule {
   static async forRootAsync({
     path,
     needsExport = false,
-    fileNameRegExp = /^(?!.*\.(test|d)$).+$/,
-    fileExtensionRegExp = /^\.(js|ts)$/,
-    exportNameRegExp,
+    includeFileNames = [],
+    excludeFileNames = [/\.test$/, /\.d$/],
+    includeFileExtensions = ['.js', '.ts'],
+    excludeFileExtensions = [],
+    includeExportNames = [],
+    excludeExportNames = [],
     ...options
   }: ProviderModuleOptions): Promise<DynamicModule> {
     const filePaths = await getFilePaths(path);
@@ -36,8 +52,10 @@ export class ProviderModule {
         .filter(value => {
           const parsed = parse(value);
           return (
-            (fileNameRegExp?.test(parsed.name) ?? true) &&
-            (fileExtensionRegExp?.test(parsed.ext) ?? true)
+            someTests(parsed.name, includeFileNames, true) &&
+            !someTests(parsed.name, excludeFileNames, false) &&
+            someTests(parsed.ext, includeFileExtensions, true) &&
+            !someTests(parsed.ext, excludeFileExtensions, false)
           );
         })
         .map(value => value.replace(/\.[^/.]+$/, ''))
@@ -48,7 +66,10 @@ export class ProviderModule {
       if (!current || typeof current !== 'object') return previous;
 
       previous.push(...Object.entries(current).reduce<Provider[]>((previous, [key, value]) => {
-        if (exportNameRegExp?.test(key) ?? true) {
+        if (
+          someTests(key, includeExportNames, true) &&
+          !someTests(key, excludeExportNames, false)
+        ) {
           previous.push(value);
         }
         return previous;

@@ -9,8 +9,8 @@ import { AppController } from './app.controller';
     ProviderModule.forRootAsync({
       path: path.resolve(__dirname, '../../services'),
       needsExport: true,
-      fileNameRegExp: /\.service$/,
-      exportNameRegExp: /Service$/,
+      includeFileNames: [/\.service$/],
+      includeExportNames: [/Service$/],
     }),
   ],
   controllers: [
