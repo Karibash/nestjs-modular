@@ -36,6 +36,7 @@ export type ProviderModuleOptions = Pick<DynamicModule, 'global'> & {
 export class ProviderModule {
   static async forRootAsync({
     path,
+    global = false,
     needsExport = false,
     includeFileNames = [],
     excludeFileNames = [/\.test$/, /\.d$/],
@@ -43,7 +44,6 @@ export class ProviderModule {
     excludeFileExtensions = [],
     includeExportNames = [],
     excludeExportNames = [],
-    ...options
   }: ProviderModuleOptions): Promise<DynamicModule> {
     const filePaths = await getFilePaths(path);
 
@@ -79,7 +79,7 @@ export class ProviderModule {
     }, []);
 
     return {
-      ...options,
+      global,
       module: ProviderModule,
       providers: providers,
       exports: (needsExport && providers) || undefined,
