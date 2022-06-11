@@ -1,10 +1,10 @@
 {
-  "name": "@nestjs-modular/provider",
+  "name": "@nestjs-modular/inject",
   "version": "1.0.0",
-  "description": "NestJS module to register providers in bulk by specifying directories.",
-  "main": "dist/nestjs-modular-provider.cjs.js",
-  "module": "dist/nestjs-modular-provider.esm.js",
-  "types": "dist/nestjs-modular-provider.cjs.d.ts",
+  "description": "NestJS module for batch dependency injection by specifying a directory.",
+  "main": "dist/nestjs-modular-inject.cjs.js",
+  "module": "dist/nestjs-modular-inject.esm.js",
+  "types": "dist/nestjs-modular-inject.cjs.d.ts",
   "files": [
     "src",
     "dist",
@@ -14,7 +14,9 @@
   "keywords": [
     "typescript",
     "nestjs",
+    "inject",
     "module",
+    "controller",
     "provider",
     "export"
   ],
@@ -27,7 +29,7 @@
   "bugs": {
     "url": "https://github.com/Karibash/nestjs-modular/issues"
   },
-  "homepage": "https://github.com/Karibash/nestjs-modular/tree/main/packages/provider",
+  "homepage": "https://github.com/Karibash/nestjs-modular/tree/main/packages/inject",
   "dependencies": {
     "@babel/runtime": "^7.18.3"
   },

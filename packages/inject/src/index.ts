@@ -21,7 +21,7 @@ const someTests = (value: string, terms: Array<string | RegExp>, _default: boole
   });
 };
 
-export type ProviderModuleOptions = Pick<DynamicModule, 'global'> & {
+export type InjectModuleOptions = Pick<DynamicModule, 'global'> & {
   path: string;
   needsExport?: boolean;
   includeFileNames?: Array<string | RegExp>;
@@ -33,7 +33,7 @@ export type ProviderModuleOptions = Pick<DynamicModule, 'global'> & {
 };
 
 @Module({})
-export class ProviderModule {
+export class InjectModule {
   static async forRootAsync({
     path,
     global = false,
@@ -44,7 +44,7 @@ export class ProviderModule {
     excludeFileExtensions = [],
     includeExportNames = [],
     excludeExportNames = [],
-  }: ProviderModuleOptions): Promise<DynamicModule> {
+  }: InjectModuleOptions): Promise<DynamicModule> {
     const filePaths = await getFilePaths(path);
 
     const modules = await Promise.all(
@@ -80,7 +80,7 @@ export class ProviderModule {
 
     return {
       global,
-      module: ProviderModule,
+      module: InjectModule,
       providers: providers,
       exports: (needsExport && providers) || undefined,
     };

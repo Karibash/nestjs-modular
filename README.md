@@ -5,9 +5,9 @@
 [![Github][github-follower-badge]][github-follower-link]
 [![Twitter][twitter-follower-badge]][twitter-follower-link]
 
-| package                                         | Version                                                                 | Description                                                                                          | Changelog                                   |
-|-------------------------------------------------|-------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------|---------------------------------------------|
-| [`@nestjs-modular/provider`](packages/provider) | [![npm version][provider-npm-version-badge]][provider-npm-version-link] | This module provides the ability to collectively inject providers residing in a specified directory. | [CHANGELOG](packages/provider/CHANGELOG.md) |
+| package                                     | Version                                                             | Description                                                                            | Changelog                                 |
+|---------------------------------------------|---------------------------------------------------------------------|----------------------------------------------------------------------------------------|-------------------------------------------|
+| [`@nestjs-modular/inject`](packages/inject) | [![npm version][inject-npm-version-badge]][inject-npm-version-link] | This module provides the ability to inject features in bulk by specifying a directory. | [CHANGELOG](packages/inject/CHANGELOG.md) |
 
 ## 🤝 Contributing
 
@@ -29,5 +29,5 @@ This project is [```MIT```](https://github.com/Karibash/nestjs-modular/blob/main
 [github-follower-link]: https://github.com/Karibash?tab=followers
 [twitter-follower-badge]: https://img.shields.io/twitter/follow/Karibash?label=Follow&style=social
 [twitter-follower-link]: https://twitter.com/intent/follow?screen_name=Karibash
-[provider-npm-version-badge]: https://badge.fury.io/js/@nestjs-modular%2Fprovider.svg
-[provider-npm-version-link]: https://www.npmjs.com/package/@nestjs-modular/provider
+[inject-npm-version-badge]: https://badge.fury.io/js/@nestjs-modular%2Finject.svg
+[inject-npm-version-link]: https://www.npmjs.com/package/@nestjs-modular/inject

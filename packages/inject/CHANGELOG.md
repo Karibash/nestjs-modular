@@ -1,4 +1,4 @@
-# @nestjs-modular/provider
+# @nestjs-modular/inject
 
 ## 1.0.0
 

@@ -1,12 +1,12 @@
 import { Module } from '@nestjs/common';
-import { ProviderModule } from '@nestjs-modular/provider';
+import { InjectModule } from '@nestjs-modular/inject';
 import path from 'path';
 
 import { AppController } from './app.controller';
 
 @Module({
   imports: [
-    ProviderModule.forRootAsync({
+    InjectModule.forRootAsync({
       path: path.resolve(__dirname, '../../services'),
       needsExport: true,
       includeFileNames: [/\.service$/],

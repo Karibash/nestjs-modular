@@ -1,4 +1,4 @@
-# @nestjs-modular/provider
+# @nestjs-modular/inject
 
 [![npm version][npm-version-badge]][npm-version-link]
 [![codecov][coverage-badge]][coverage-link]
@@ -6,18 +6,18 @@
 [![Github][github-follower-badge]][github-follower-link]
 [![Twitter][twitter-follower-badge]][twitter-follower-link]
 
-This module provides the ability to collectively inject providers residing in a specified directory.
+This module provides the ability to inject features in bulk by specifying a directory.
 
-This reduces the need to manually inject providers that may be used throughout a project, such as a repository, each time.
+This reduces the need to manually inject every time you create a class that may be used throughout a project, such as a repository.
 
 ## 🗒 Examples
 
-- [REST API Server](../../examples/provider)
+- [REST API Server](../../examples/inject)
 
 ## 🚀 Installation
 
 ```
-$ npm install @nestjs-modular/provider
+$ npm install @nestjs-modular/inject
 ```
 
 ## 👏 Getting Started
@@ -28,7 +28,7 @@ You can provide repositories at once by writing as follows.
 @Global()
 @Module({
   imports: [
-    ProviderModule.forRootAsync({
+    InjectModule.forRootAsync({
       global: true,
       needsExport: true,
       path: path.resolve(__dirname, './repositories'),
@@ -45,7 +45,7 @@ export class GlobalModule {}
 The default values for the optional settings are as follows.
 
 ```ts
-ProviderModule.forRootAsync({
+InjectModule.forRootAsync({
   global: false,
   needsExport: false,
   includeFileNames: [],
@@ -81,14 +81,14 @@ Feel free to check [issues page](https://github.com/Karibash/nestjs-modular/issu
 
 Copyright © 2020 [@Karibash](https://twitter.com/karibash).
 
-This project is [```MIT```](https://github.com/Karibash/nestjs-modular/blob/main/packages/provider/LICENSE) licensed.
+This project is [```MIT```](https://github.com/Karibash/nestjs-modular/blob/main/packages/inject/LICENSE) licensed.
 
-[npm-version-badge]: https://badge.fury.io/js/@nestjs-modular%2Fprovider.svg
-[npm-version-link]: https://www.npmjs.com/package/@nestjs-modular/provider
-[coverage-badge]: https://codecov.io/gh/Karibash/nestjs-modular/branch/master/graph/badge.svg?flag=provider
-[coverage-link]: https://codecov.io/gh/Karibash/nestjs-modular/tree/master/packages/provider
-[license-badge]: https://img.shields.io/npm/l/@nestjs-modular%2Fprovider.svg
-[license-link]: https://github.com/Karibash/nestjs-modular/blob/main/packages/provider/LICENSE
+[npm-version-badge]: https://badge.fury.io/js/@nestjs-modular%2Finject.svg
+[npm-version-link]: https://www.npmjs.com/package/@nestjs-modular/inject
+[coverage-badge]: https://codecov.io/gh/Karibash/nestjs-modular/branch/master/graph/badge.svg?flag=inject
+[coverage-link]: https://codecov.io/gh/Karibash/nestjs-modular/tree/master/packages/inject
+[license-badge]: https://img.shields.io/npm/l/@nestjs-modular%2Finject.svg
+[license-link]: https://github.com/Karibash/nestjs-modular/blob/main/packages/inject/LICENSE
 [github-follower-badge]: https://img.shields.io/github/followers/Karibash?label=Follow&logo=github&style=social
 [github-follower-link]: https://github.com/Karibash?tab=followers
 [twitter-follower-badge]: https://img.shields.io/twitter/follow/Karibash?label=Follow&style=social
