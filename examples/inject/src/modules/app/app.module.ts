@@ -7,10 +7,16 @@ import { AppController } from './app.controller';
 @Module({
   imports: [
     InjectModule.forRootAsync({
-      path: path.resolve(__dirname, '../../services'),
-      needsExport: true,
-      includeFileNames: [/\.service$/],
-      includeExportNames: [/Service$/],
+      providers: {
+        path: path.resolve(__dirname, '../../services'),
+        includeFileNames: [/\.service$/],
+        includeExportNames: [/Service$/],
+      },
+      exports: {
+        path: path.resolve(__dirname, '../../services'),
+        includeFileNames: [/\.service$/],
+        includeExportNames: [/Service$/],
+      },
     }),
   ],
   controllers: [

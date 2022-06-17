@@ -1,6 +1,7 @@
-import { DynamicModule, Module, Provider } from '@nestjs/common';
+import { DynamicModule, Module } from '@nestjs/common';
 import { readdir } from 'fs/promises';
 import { parse } from 'path';
+import { Type } from '@nestjs/common/interfaces/type.interface';
 
 const getFilePaths = async (path: string): Promise<string[]> => {
   const dirents = await readdir(path, { withFileTypes: true });
@@ -21,9 +22,55 @@ const someTests = (value: string, terms: Array<string | RegExp>, _default: boole
   });
 };
 
-export type InjectModuleOptions = Pick<DynamicModule, 'global'> & {
+const getInjectables = async (conditions?: InjectConditions): Promise<Type[]> => {
+  const mergedConditions = {
+    includeFileNames: [],
+    excludeFileNames: [/\.test$/, /\.d$/],
+    includeFileExtensions: ['.js', '.ts'],
+    excludeFileExtensions: [],
+    includeExportNames: [],
+    excludeExportNames: [],
+    ...conditions,
+  };
+
+  if (!mergedConditions?.path) return [];
+
+  const filePaths = await getFilePaths(mergedConditions.path);
+
+  const modules = await Promise.all(
+    filePaths
+      .filter(value => {
+        const parsed = parse(value);
+        return (
+          someTests(parsed.name, mergedConditions.includeFileNames, true) &&
+          !someTests(parsed.name, mergedConditions.excludeFileNames, false) &&
+          someTests(parsed.ext, mergedConditions.includeFileExtensions, true) &&
+          !someTests(parsed.ext, mergedConditions.excludeFileExtensions, false)
+        );
+      })
+      .map(value => value.replace(/\.[^/.]+$/, ''))
+      .map<unknown>(async path => await import(path)),
+  );
+
+  return modules.reduce<Type[]>((previous, current) => {
+    if (!current || typeof current !== 'object') return previous;
+
+    previous.push(...Object.entries(current).reduce<Type[]>((previous, [key, value]) => {
+      if (
+        someTests(key, mergedConditions.includeExportNames, true) &&
+        !someTests(key, mergedConditions.excludeExportNames, false)
+      ) {
+        previous.push(value);
+      }
+      return previous;
+    }, []));
+
+    return previous;
+  }, []);
+};
+
+export type InjectConditions = {
   path: string;
-  needsExport?: boolean;
   includeFileNames?: Array<string | RegExp>;
   excludeFileNames?: Array<string | RegExp>;
   includeFileExtensions?: Array<string | RegExp>;
@@ -32,57 +79,41 @@ export type InjectModuleOptions = Pick<DynamicModule, 'global'> & {
   excludeExportNames?: Array<string | RegExp>;
 };
 
+export type InjectModuleOptions = Pick<DynamicModule, 'global'> & {
+  imports?: InjectConditions;
+  controllers?: InjectConditions;
+  providers?: InjectConditions;
+  exports?: InjectConditions;
+};
+
 @Module({})
 export class InjectModule {
   static async forRootAsync({
-    path,
-    global = false,
-    needsExport = false,
-    includeFileNames = [],
-    excludeFileNames = [/\.test$/, /\.d$/],
-    includeFileExtensions = ['.js', '.ts'],
-    excludeFileExtensions = [],
-    includeExportNames = [],
-    excludeExportNames = [],
+    global,
+    imports: importsConditions,
+    controllers: controllersConditions,
+    providers: providersConditions,
+    exports: exportsConditions,
   }: InjectModuleOptions): Promise<DynamicModule> {
-    const filePaths = await getFilePaths(path);
-
-    const modules = await Promise.all(
-      filePaths
-        .filter(value => {
-          const parsed = parse(value);
-          return (
-            someTests(parsed.name, includeFileNames, true) &&
-            !someTests(parsed.name, excludeFileNames, false) &&
-            someTests(parsed.ext, includeFileExtensions, true) &&
-            !someTests(parsed.ext, excludeFileExtensions, false)
-          );
-        })
-        .map(value => value.replace(/\.[^/.]+$/, ''))
-        .map<unknown>(async path => await import(path)),
-    );
-
-    const providers = modules.reduce<Provider[]>((previous, current) => {
-      if (!current || typeof current !== 'object') return previous;
-
-      previous.push(...Object.entries(current).reduce<Provider[]>((previous, [key, value]) => {
-        if (
-          someTests(key, includeExportNames, true) &&
-          !someTests(key, excludeExportNames, false)
-        ) {
-          previous.push(value);
-        }
-        return previous;
-      }, []));
-
-      return previous;
-    }, []);
+    const [
+      imports,
+      controllers,
+      providers,
+      exports,
+    ] = await Promise.all([
+      getInjectables(importsConditions),
+      getInjectables(controllersConditions),
+      getInjectables(providersConditions),
+      getInjectables(exportsConditions),
+    ]);
 
     return {
       global,
+      imports,
+      controllers,
+      providers,
+      exports,
       module: InjectModule,
-      providers: providers,
-      exports: (needsExport && providers) || undefined,
     };
   }
 }

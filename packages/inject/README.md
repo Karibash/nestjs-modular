@@ -30,10 +30,16 @@ You can provide repositories at once by writing as follows.
   imports: [
     InjectModule.forRootAsync({
       global: true,
-      needsExport: true,
-      path: path.resolve(__dirname, './repositories'),
-      includeFileNames: [/\.repository$/],
-      includeExportNames: [/Repository$/],
+      providers: {
+        path: path.resolve(__dirname, './repositories'),
+        includeFileNames: [/\.repository$/],
+        includeExportNames: [/Repository$/],
+      },
+      exports: {
+        path: path.resolve(__dirname, './repositories'),
+        includeFileNames: [/\.repository$/],
+        includeExportNames: [/Repository$/],
+      },
     }),
   ],
 })
@@ -42,28 +48,19 @@ export class GlobalModule {}
 
 ## 🔧 Configurations
 
-The default values for the optional settings are as follows.
+| Name          | Description                                                             | Type             | Default     |
+|---------------|-------------------------------------------------------------------------|------------------|-------------|
+| `global`      | If set to true, the module is registered in the global scope.           | boolean          | `false`     |
+| `imports`     | Specify the conditions of the module to be imported.                    | InjectConditions | `undefined` |
+| `controllers` | Specify the controller condition to be instantiated.                    | InjectConditions | `undefined` |
+| `providers`   | Specify the conditions of the provider to be instantiated.              | InjectConditions | `undefined` |
+| `exports`     | Specify conditions for providers to be made available in other modules. | InjectConditions | `undefined` |
 
-```ts
-InjectModule.forRootAsync({
-  global: false,
-  needsExport: false,
-  includeFileNames: [],
-  excludeFileNames: [/\.test$/, /\.d$/],
-  includeFileExtensions: ['.js', '.ts'],
-  excludeFileExtensions: [],
-  includeExportNames: [],
-  excludeExportNames: [],
-})
-```
-
-### Options
+### InjectConditions
 
 | Name                    | Description                                                                           | Type                        | Default Value         |
 |-------------------------|---------------------------------------------------------------------------------------|-----------------------------|-----------------------|
 | `path`                  | The absolute path to the directory where the classes you want to provide are stored.  | string                      |                       |
-| `global`                | If set to true, the module is registered in the global scope.                         | boolean                     | `false`               |
-| `needsExport`           | If set to true, the provider will be exported.                                        | boolean                     | `false`               |
 | `includeFileNames`      | Specify an array of strings or regular expressions of file names to be included.      | Array<string &#124; RegExp> | `[]`                  |
 | `excludeFileNames`      | Specify an array of strings or regular expressions of file names to be excluded.      | Array<string &#124; RegExp> | `[/\.test$/, /\.d$/]` |
 | `includeFileExtensions` | Specify an array of strings or regular expressions of file extensions to be included. | Array<string &#124; RegExp> | `['.js', '.ts']`      |
