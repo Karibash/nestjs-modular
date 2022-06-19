@@ -5,5 +5,6 @@ module.exports = {
   ],
   plugins: [
     ['@babel/plugin-transform-runtime', { version: require('@babel/runtime/package.json').version }],
+    ['@babel/plugin-proposal-decorators', { legacy: true }],
   ],
 };
