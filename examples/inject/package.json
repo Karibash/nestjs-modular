@@ -1,5 +1,5 @@
 {
-  "name": "nest-js-modular-inject",
+  "name": "nest-js-modular-inject-example",
   "version": "0.0.0",
   "description": "",
   "author": "",
@@ -9,6 +9,7 @@
     "prebuild": "rimraf dist",
     "build": "nest build",
     "start": "nest start",
+    "start:mock": "APP_ENV=mock nest start",
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main"
