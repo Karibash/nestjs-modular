@@ -1,7 +1,6 @@
-import { DynamicModule, Module } from '@nestjs/common';
+import { DynamicModule, Module, ModuleMetadata } from '@nestjs/common';
 import { readdir } from 'fs/promises';
 import { parse } from 'path';
-import { Type } from '@nestjs/common/interfaces/type.interface';
 
 const getFilePaths = async (path: string): Promise<string[]> => {
   const dirents = await readdir(path, { withFileTypes: true });
@@ -22,8 +21,9 @@ const someTests = (value: string, terms: Array<string | RegExp>, _default: boole
   });
 };
 
-const getInjectables = async (conditions?: InjectConditions): Promise<Type[]> => {
+const getInjectables = async <T>(conditions?: InjectConditions<T[]>): Promise<T[]> => {
   const mergedConditions = {
+    injects: [],
     includeFileNames: [],
     excludeFileNames: [/\.test$/, /\.d$/],
     includeFileExtensions: ['.js', '.ts'],
@@ -33,7 +33,7 @@ const getInjectables = async (conditions?: InjectConditions): Promise<Type[]> =>
     ...conditions,
   };
 
-  if (!mergedConditions?.path) return [];
+  if (!mergedConditions?.path) return mergedConditions.injects;
 
   const filePaths = await getFilePaths(mergedConditions.path);
 
@@ -52,10 +52,10 @@ const getInjectables = async (conditions?: InjectConditions): Promise<Type[]> =>
       .map<unknown>(async path => await import(path)),
   );
 
-  return modules.reduce<Type[]>((previous, current) => {
+  const injectables = modules.reduce<T[]>((previous, current) => {
     if (!current || typeof current !== 'object') return previous;
 
-    previous.push(...Object.entries(current).reduce<Type[]>((previous, [key, value]) => {
+    previous.push(...Object.entries(current).reduce<T[]>((previous, [key, value]) => {
       if (
         someTests(key, mergedConditions.includeExportNames, true) &&
         !someTests(key, mergedConditions.excludeExportNames, false)
@@ -67,9 +67,13 @@ const getInjectables = async (conditions?: InjectConditions): Promise<Type[]> =>
 
     return previous;
   }, []);
+
+  return [...injectables, ...mergedConditions.injects];
 };
 
-export type InjectConditions = {
+export type InjectConditions<T> = {
+  injects?: T;
+} & {
   path: string;
   includeFileNames?: Array<string | RegExp>;
   excludeFileNames?: Array<string | RegExp>;
@@ -80,10 +84,10 @@ export type InjectConditions = {
 };
 
 export type InjectModuleOptions = Pick<DynamicModule, 'global'> & {
-  imports?: InjectConditions;
-  controllers?: InjectConditions;
-  providers?: InjectConditions;
-  exports?: InjectConditions;
+  imports?: InjectConditions<Exclude<ModuleMetadata['imports'], undefined>>;
+  controllers?: InjectConditions<Exclude<ModuleMetadata['controllers'], undefined>>;
+  providers?: InjectConditions<Exclude<ModuleMetadata['providers'], undefined>>;
+  exports?: InjectConditions<Exclude<ModuleMetadata['exports'], undefined>>;
 };
 
 @Module({})
