@@ -1,5 +1,11 @@
 # @nestjs-modular/inject
 
+## 1.1.0
+
+### Minor Changes
+
+- [#5](https://github.com/Karibash/nestjs-modular/pull/5) [`40c42ae`](https://github.com/Karibash/nestjs-modular/commit/40c42aedd2d5b288844a7e8e8b0d83b8e0df74dd) Thanks [@Karibash](https://github.com/Karibash)! - Make it possible to explicitly specify the features to be injected
+
 ## 1.0.1
 
 ### Patch Changes
