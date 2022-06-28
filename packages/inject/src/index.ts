@@ -21,7 +21,7 @@ const someTests = (value: string, terms: Array<string | RegExp>, _default: boole
   });
 };
 
-const getInjectables = async <T>(conditions?: InjectConditions<T[]>): Promise<T[]> => {
+const getInjectables = async <T>(conditions?: InjectOptions<T[]>): Promise<T[]> => {
   const mergedConditions = {
     injects: [],
     includeFileNames: [],
@@ -71,9 +71,7 @@ const getInjectables = async <T>(conditions?: InjectConditions<T[]>): Promise<T[
   return [...injectables, ...mergedConditions.injects];
 };
 
-export type InjectConditions<T> = {
-  injects?: T;
-} & {
+export type InjectConditions = {
   path: string;
   includeFileNames?: Array<string | RegExp>;
   excludeFileNames?: Array<string | RegExp>;
@@ -83,11 +81,15 @@ export type InjectConditions<T> = {
   excludeExportNames?: Array<string | RegExp>;
 };
 
+export type InjectOptions<T> = InjectConditions & {
+  injects?: T;
+};
+
 export type InjectModuleOptions = Pick<DynamicModule, 'global'> & {
-  imports?: InjectConditions<Exclude<ModuleMetadata['imports'], undefined>>;
-  controllers?: InjectConditions<Exclude<ModuleMetadata['controllers'], undefined>>;
-  providers?: InjectConditions<Exclude<ModuleMetadata['providers'], undefined>>;
-  exports?: InjectConditions<Exclude<ModuleMetadata['exports'], undefined>>;
+  imports?: InjectOptions<Exclude<ModuleMetadata['imports'], undefined>>;
+  controllers?: InjectOptions<Exclude<ModuleMetadata['controllers'], undefined>>;
+  providers?: InjectOptions<Exclude<ModuleMetadata['providers'], undefined>>;
+  exports?: InjectOptions<Exclude<ModuleMetadata['exports'], undefined>>;
 };
 
 @Module({})
