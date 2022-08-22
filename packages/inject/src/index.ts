@@ -41,7 +41,9 @@ const getInjectables = async <T>(conditions?: InjectOptions<T[]>): Promise<T[]> 
 
   if (!mergedConditions?.path) return mergedConditions.injects;
 
-  const filePaths = await getFilePaths(mergedConditions.path);
+  const filePaths = typeof mergedConditions.path === 'string'
+    ? await getFilePaths(mergedConditions.path)
+    : await Promise.all(mergedConditions.path.map(async path => await getFilePaths(path))).then(paths => paths.flat());
 
   const modules = await Promise.all(
     filePaths
@@ -78,7 +80,7 @@ const getInjectables = async <T>(conditions?: InjectOptions<T[]>): Promise<T[]> 
 };
 
 export type InjectConditions = {
-  path: string;
+  path: string | string[];
   includeFileNames?: Array<string | RegExp>;
   excludeFileNames?: Array<string | RegExp>;
   includeFileExtensions?: Array<string | RegExp>;

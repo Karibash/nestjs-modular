@@ -60,7 +60,7 @@ export class GlobalModule {}
 
 | Name                    | Description                                                                           | Type                        | Default Value         |
 |-------------------------|---------------------------------------------------------------------------------------|-----------------------------|-----------------------|
-| `path`                  | The absolute path to the directory where the classes you want to provide are stored.  | string                      | `undefined`           |
+| `path`                  | The absolute path to the directory where the classes you want to provide are stored.  | string &#124; string[]      |                       |
 | `injects`               | Specify the feature to be injected as an array.                                       | Array<Type<any>>            | `[]`                  |
 | `includeFileNames`      | Specify an array of strings or regular expressions of file names to be included.      | Array<string &#124; RegExp> | `[]`                  |
 | `excludeFileNames`      | Specify an array of strings or regular expressions of file names to be excluded.      | Array<string &#124; RegExp> | `[/\.test$/, /\.d$/]` |
