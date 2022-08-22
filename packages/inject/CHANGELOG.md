@@ -1,5 +1,11 @@
 # @nestjs-modular/inject
 
+## 1.2.0
+
+### Minor Changes
+
+- [#9](https://github.com/Karibash/nestjs-modular/pull/9) [`e5c088e`](https://github.com/Karibash/nestjs-modular/commit/e5c088e892fbb305aaa152f33e410895fa689fc1) Thanks [@Karibash](https://github.com/Karibash)! - Make it possible to specify a glob in the path
+
 ## 1.1.1
 
 ### Patch Changes
