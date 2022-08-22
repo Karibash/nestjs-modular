@@ -1,5 +1,11 @@
 # @nestjs-modular/inject
 
+## 1.2.1
+
+### Patch Changes
+
+- [#11](https://github.com/Karibash/nestjs-modular/pull/11) [`d657964`](https://github.com/Karibash/nestjs-modular/commit/d65796434ac3c09f8ad9ae30cd741c916f958621) Thanks [@Karibash](https://github.com/Karibash)! - Make the path option accept arrays
+
 ## 1.2.0
 
 ### Minor Changes
