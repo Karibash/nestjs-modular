@@ -1,14 +1,20 @@
 import { DynamicModule, Module, ModuleMetadata } from '@nestjs/common';
-import { readdir } from 'fs/promises';
+import { stat } from 'fs/promises';
 import { parse } from 'path';
+import { promisify } from 'util';
+import glob from 'glob';
+
+const asyncGlob = promisify(glob);
 
 const getFilePaths = async (path: string): Promise<string[]> => {
-  const dirents = await readdir(path, { withFileTypes: true });
-  const files = await Promise.all(dirents.map(dirent => {
-    const result = `${path}/${dirent.name}`;
-    return dirent.isDirectory() ? getFilePaths(result) : result;
-  }));
-  return files.flat();
+  if (glob.hasMagic(path)) return await asyncGlob(path);
+
+  const stats = await stat(path);
+  if (stats.isDirectory()) {
+    return await asyncGlob(`${path}/**/*`);
+  }
+
+  throw Error('The path must be a directory');
 };
 
 const someTests = (value: string, terms: Array<string | RegExp>, _default: boolean): boolean => {
