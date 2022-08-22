@@ -31,10 +31,12 @@
   },
   "homepage": "https://github.com/Karibash/nestjs-modular/tree/main/packages/inject",
   "dependencies": {
-    "@babel/runtime": "^7.18.3"
+    "@babel/runtime": "^7.18.3",
+    "glob": "^8.0.3"
   },
   "devDependencies": {
     "@nestjs/common": "^8.4.5",
+    "@types/glob": "^7.2.0",
     "typescript": "^4.7.2"
   },
   "peerDependencies": {
