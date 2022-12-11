@@ -1,8 +1,11 @@
-import { DynamicModule, Module, ModuleMetadata } from '@nestjs/common';
 import { stat } from 'fs/promises';
 import { parse } from 'path';
 import { promisify } from 'util';
+
+import { Module } from '@nestjs/common';
 import glob from 'glob';
+
+import type { DynamicModule, ModuleMetadata } from '@nestjs/common';
 
 const asyncGlob = promisify(glob);
 
@@ -68,7 +71,7 @@ const getInjectables = async <T>(conditions?: InjectOptions<T[]>): Promise<T[]> 
         someTests(key, mergedConditions.includeExportNames, true) &&
         !someTests(key, mergedConditions.excludeExportNames, false)
       ) {
-        previous.push(value);
+        previous.push(value as T);
       }
       return previous;
     }, []));
