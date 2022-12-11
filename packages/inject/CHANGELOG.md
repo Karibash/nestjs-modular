@@ -1,5 +1,15 @@
 # @nestjs-modular/inject
 
+## 1.2.2
+
+### Patch Changes
+
+- [#14](https://github.com/Karibash/nestjs-modular/pull/14) [`907b57f`](https://github.com/Karibash/nestjs-modular/commit/907b57f956037d3ebfcc3ca9171739595d44a52e) Thanks [@Karibash](https://github.com/Karibash)! - Update the version of dependencies
+
+- [#14](https://github.com/Karibash/nestjs-modular/pull/14) [`36f49bd`](https://github.com/Karibash/nestjs-modular/commit/36f49bd71a93e2978ba28689618e1734202755f9) Thanks [@Karibash](https://github.com/Karibash)! - Pin the version of the dependencies
+
+- [#15](https://github.com/Karibash/nestjs-modular/pull/15) [`1815a99`](https://github.com/Karibash/nestjs-modular/commit/1815a99081bd3aadb32d42452612f7d4e3bd886d) Thanks [@Karibash](https://github.com/Karibash)! - Change eslint config
+
 ## 1.2.1
 
 ### Patch Changes
