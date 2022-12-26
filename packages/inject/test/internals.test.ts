@@ -2,7 +2,7 @@ import path from 'path';
 
 import { describe, expect, it } from '@jest/globals';
 
-import { getFilePaths } from '../src/internals';
+import { getFilePaths, someTests } from '../src/internals';
 
 const fixturesDirectory = path.resolve(__dirname, 'fixtures');
 
@@ -31,5 +31,24 @@ describe('getFilePaths', () => {
 
   it('file path', async () => {
     await expect(getFilePaths(path.resolve(fixturesDirectory, 'a/b.ts'))).rejects.toThrow(Error);
+  });
+});
+
+describe('someTests', () => {
+  it('string terms', () => {
+    expect(someTests('/a/b/c', ['/a/b/c'], false)).toBe(true);
+  });
+
+  it('regex terms', () => {
+    expect(someTests('/a/b/c', [/^\/a/], false)).toBe(true);
+  });
+
+  it('compound terms', () => {
+    expect(someTests('/a/b/c', ['/a/b/c', /^\/a/], false)).toBe(true);
+  });
+
+  it('empty terms', () => {
+    expect(someTests('', [], true)).toBe(true);
+    expect(someTests('', [], false)).toBe(false);
   });
 });
