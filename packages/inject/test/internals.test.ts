@@ -15,6 +15,7 @@ describe('getFilePaths', () => {
       expect.stringMatching(/fixtures\/a\/b.ts$/),
       expect.stringMatching(/fixtures\/a\/b\/abc.ts$/),
       expect.stringMatching(/fixtures\/a\/b\/c.ts$/),
+      expect.stringMatching(/fixtures\/1\/2.ts$/),
     ];
     expect(paths).toEqual(expect.arrayContaining(expected));
   });
@@ -59,7 +60,18 @@ describe('getInjectables', () => {
       path: fixturesDirectory,
     });
 
-    expect(injectables).toEqual(['ab', 'b', 'abc', 'c']);
+    expect(injectables).toEqual(['2', 'ab', 'b', 'abc', 'c']);
+  });
+
+  it('multiple path', async () => {
+    const injectables = await getInjectables({
+      path: [
+        path.resolve(fixturesDirectory, '1'),
+        path.resolve(fixturesDirectory, 'a'),
+      ],
+    });
+
+    expect(injectables).toEqual(['2', 'ab', 'b', 'abc', 'c']);
   });
 
   it('with includeFileNames', async () => {
@@ -77,7 +89,7 @@ describe('getInjectables', () => {
       excludeFileNames: ['ab'],
     });
 
-    expect(injectables).toEqual(['b', 'abc', 'c']);
+    expect(injectables).toEqual(['2', 'b', 'abc', 'c']);
   });
 
   it('with includeFileExtensions', async () => {
@@ -113,7 +125,7 @@ describe('getInjectables', () => {
       excludeExportNames: ['ab'],
     });
 
-    expect(injectables).toEqual(['b', 'abc', 'c']);
+    expect(injectables).toEqual(['2', 'b', 'abc', 'c']);
   });
 
   it('with injects', async () => {
@@ -122,6 +134,6 @@ describe('getInjectables', () => {
       injects: ['inject'],
     });
 
-    expect(injectables).toEqual(['ab', 'b', 'abc', 'c', 'inject']);
+    expect(injectables).toEqual(['2', 'ab', 'b', 'abc', 'c', 'inject']);
   });
 });
