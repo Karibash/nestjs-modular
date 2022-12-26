@@ -9,11 +9,11 @@ import type { InjectOptions } from './types';
 const asyncGlob = promisify(glob);
 
 export const getFilePaths = async (path: string): Promise<string[]> => {
-  if (glob.hasMagic(path)) return await asyncGlob(path);
+  if (glob.hasMagic(path)) return await asyncGlob(path, { nodir: true });
 
   const stats = await stat(path);
   if (stats.isDirectory()) {
-    return await asyncGlob(`${path}/**/*`);
+    return await asyncGlob(`${path}/**/*`, { nodir: true });
   }
 
   throw Error('The path must be a directory');
