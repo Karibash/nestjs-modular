@@ -1,5 +1,13 @@
 # @nestjs-modular/inject
 
+## 1.2.3
+
+### Patch Changes
+
+- [#18](https://github.com/Karibash/nestjs-modular/pull/18) [`1748e5b`](https://github.com/Karibash/nestjs-modular/commit/1748e5b51412b045a2053922f893fff3219fa444) Thanks [@Karibash](https://github.com/Karibash)! - Make the code split into separate files for each use
+
+- [#18](https://github.com/Karibash/nestjs-modular/pull/18) [`93d4b57`](https://github.com/Karibash/nestjs-modular/commit/93d4b57a3a556cbd235bb9b2e3a905578d81758b) Thanks [@Karibash](https://github.com/Karibash)! - Fix a bug that the getFilePaths function was getting directories
+
 ## 1.2.2
 
 ### Patch Changes
