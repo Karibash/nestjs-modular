@@ -5,9 +5,10 @@
 [![Github][github-follower-badge]][github-follower-link]
 [![Twitter][twitter-follower-badge]][twitter-follower-link]
 
-| package                                     | Version                                                             | Description                                                                            | Changelog                                 |
-|---------------------------------------------|---------------------------------------------------------------------|----------------------------------------------------------------------------------------|-------------------------------------------|
-| [`@nestjs-modular/inject`](packages/inject) | [![npm version][inject-npm-version-badge]][inject-npm-version-link] | This module provides the ability to inject features in bulk by specifying a directory. | [CHANGELOG](packages/inject/CHANGELOG.md) |
+| package                                         | Version                                                                 | Description                                                                                           | Changelog                                   |
+|-------------------------------------------------|-------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------|---------------------------------------------|
+| [`@nestjs-modular/inject`](packages/inject)     | [![npm version][inject-npm-version-badge]][inject-npm-version-link]     | This module provides the ability to inject features in bulk by specifying a directory.                | [CHANGELOG](packages/inject/CHANGELOG.md)   |
+| [`@nestjs-modular/validate`](packages/validate) | [![npm version][validate-npm-version-badge]][validate-npm-version-link] | This module provides a pipe to validate incoming requests using schema validation such as Zod or Yup. | [CHANGELOG](packages/validate/CHANGELOG.md) |
 
 ## 🤝 Contributing
 
@@ -31,3 +32,5 @@ This project is [```MIT```](https://github.com/Karibash/nestjs-modular/blob/main
 [twitter-follower-link]: https://twitter.com/intent/follow?screen_name=Karibash
 [inject-npm-version-badge]: https://badge.fury.io/js/@nestjs-modular%2Finject.svg
 [inject-npm-version-link]: https://www.npmjs.com/package/@nestjs-modular/inject
+[validate-npm-version-badge]: https://badge.fury.io/js/@nestjs-modular%2Fvalidate.svg
+[validate-npm-version-link]: https://www.npmjs.com/package/@nestjs-modular/validate
