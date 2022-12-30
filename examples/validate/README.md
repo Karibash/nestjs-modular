@@ -1,6 +1,6 @@
-# nest-js-modular-inject
+# nest-js-modular-validate
 
-This is a example program describing the basic usage of @nestjs-modular/inject package.
+This is a example program describing the basic usage of @nestjs-modular/validate package.
 
 ## Usage
 
