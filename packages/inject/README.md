@@ -1,7 +1,7 @@
 # @nestjs-modular/inject
 
 [![npm version][npm-version-badge]][npm-version-link]
-[![codecov][coverage-badge]][coverage-link]
+[![npm download][npm-download-badge]][npm-download-link]
 [![license][license-badge]][license-link]
 [![Github][github-follower-badge]][github-follower-link]
 [![Twitter][twitter-follower-badge]][twitter-follower-link]
@@ -83,8 +83,8 @@ This project is [```MIT```](https://github.com/Karibash/nestjs-modular/blob/main
 
 [npm-version-badge]: https://badge.fury.io/js/@nestjs-modular%2Finject.svg
 [npm-version-link]: https://www.npmjs.com/package/@nestjs-modular/inject
-[coverage-badge]: https://codecov.io/gh/Karibash/nestjs-modular/branch/master/graph/badge.svg?flag=inject
-[coverage-link]: https://codecov.io/gh/Karibash/nestjs-modular/tree/master/packages/inject
+[npm-download-badge]: https://img.shields.io/npm/dm/@nestjs-modular/inject.svg
+[npm-download-link]: https://www.npmjs.com/package/@nestjs-modular/inject
 [license-badge]: https://img.shields.io/npm/l/@nestjs-modular%2Finject.svg
 [license-link]: https://github.com/Karibash/nestjs-modular/blob/main/packages/inject/LICENSE
 [github-follower-badge]: https://img.shields.io/github/followers/Karibash?label=Follow&logo=github&style=social
