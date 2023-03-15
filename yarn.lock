@@ -1656,6 +1656,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@babel/runtime@npm:7.20.7":
+  version: 7.20.7
+  resolution: "@babel/runtime@npm:7.20.7"
+  dependencies:
+    regenerator-runtime: ^0.13.11
+  checksum: 4629ce5c46f06cca9cfb9b7fc00d48003335a809888e2b91ec2069a2dcfbfef738480cff32ba81e0b7c290f8918e5c22ddcf2b710001464ee84ba62c7e32a3a3
+  languageName: node
+  linkType: hard
+
 "@babel/runtime@npm:^7.10.4, @babel/runtime@npm:^7.5.5, @babel/runtime@npm:^7.7.7, @babel/runtime@npm:^7.8.4":
   version: 7.18.3
   resolution: "@babel/runtime@npm:7.18.3"
@@ -2493,6 +2502,19 @@ __metadata:
     "@nestjs/common": 9.2.1
     "@types/glob": 8.0.0
     glob: 8.0.3
+    typescript: 4.9.4
+  peerDependencies:
+    "@nestjs/common": ^9.0.0
+  languageName: unknown
+  linkType: soft
+
+"@nestjs-modular/validate@1.0.0, @nestjs-modular/validate@workspace:packages/validate":
+  version: 0.0.0-use.local
+  resolution: "@nestjs-modular/validate@workspace:packages/validate"
+  dependencies:
+    "@babel/runtime": 7.20.6
+    "@nestjs/common": 9.2.1
+    "@valivali/core": 1.0.0
     typescript: 4.9.4
   peerDependencies:
     "@nestjs/common": ^9.0.0
@@ -3454,6 +3476,75 @@ __metadata:
     "@typescript-eslint/types": 5.46.0
     eslint-visitor-keys: ^3.3.0
   checksum: 83ec2514b2469db395f006576c934bd60b21e74e2e67c183f8d9249954119c56074de286ce8c55d42e20b06d0083d4665f3baf0eed720712203796be488f0944
+  languageName: node
+  linkType: hard
+
+"@valivali/core@npm:1.0.0":
+  version: 1.0.0
+  resolution: "@valivali/core@npm:1.0.0"
+  dependencies:
+    "@babel/runtime": 7.20.7
+  checksum: 6400bb8f76cd33d5f312700278a970aa09ba46fe7405101b51e3c4ed88ca1af9c4b6860d5f1db776f068723c9e6a14754f02c361290c0119e1cdf753a8494aa4
+  languageName: node
+  linkType: hard
+
+"@valivali/myzod@npm:1.0.0":
+  version: 1.0.0
+  resolution: "@valivali/myzod@npm:1.0.0"
+  dependencies:
+    "@babel/runtime": 7.20.7
+    "@valivali/core": 1.0.0
+  peerDependencies:
+    myzod: ^1.0.0
+  checksum: c1fe5b803af6d33b0fc8760c1f06457d5cf56ed1248747b65f2791c287e895e054025ca21bb1c9fb3f124eecd33d444397dcd0470ea45796d0270bfb5cf90875
+  languageName: node
+  linkType: hard
+
+"@valivali/runtypes@npm:1.0.0":
+  version: 1.0.0
+  resolution: "@valivali/runtypes@npm:1.0.0"
+  dependencies:
+    "@babel/runtime": 7.20.7
+    "@valivali/core": 1.0.0
+  peerDependencies:
+    runtypes: ^6.0.0
+  checksum: 357d515dbd2ee931f11b6947a9e3553aee0f3681df6188516279d4c12be805fc9c4cedfbffb9706501fc4be5e74ccaa5ae5ed707c70045b1f73d56562ae13575
+  languageName: node
+  linkType: hard
+
+"@valivali/superstruct@npm:1.0.0":
+  version: 1.0.0
+  resolution: "@valivali/superstruct@npm:1.0.0"
+  dependencies:
+    "@babel/runtime": 7.20.7
+    "@valivali/core": 1.0.0
+  peerDependencies:
+    superstruct: ^1.0.0
+  checksum: 13d27a3586f4783b4d6ee3f8b7d456941f0793192b367cf487c9ef6ae6456aa309f02fc7bd43d68778abc3eec3773cb2231db022e411bebf81bcac9716cc547f
+  languageName: node
+  linkType: hard
+
+"@valivali/yup@npm:1.0.0":
+  version: 1.0.0
+  resolution: "@valivali/yup@npm:1.0.0"
+  dependencies:
+    "@babel/runtime": 7.20.7
+    "@valivali/core": 1.0.0
+  peerDependencies:
+    yup: ^1.0.0
+  checksum: f71389a18d41f033a00658d7f954b261f1ee87d7ce4384756a513a167f9407294be7455621bb38f72c877c21838f1857524756647d89faffc32bba41d4805606
+  languageName: node
+  linkType: hard
+
+"@valivali/zod@npm:1.0.0":
+  version: 1.0.0
+  resolution: "@valivali/zod@npm:1.0.0"
+  dependencies:
+    "@babel/runtime": 7.20.7
+    "@valivali/core": 1.0.0
+  peerDependencies:
+    zod: ^3.0.0
+  checksum: 681883e3c2359d468e1f07d3161e09ddfedfd9169ea802c0d46802263ff832391b4080038a449932004781048e3e987a11b7d866ea4ee0c705fc4fde31f17c24
   languageName: node
   linkType: hard
 
@@ -8162,6 +8253,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"myzod@npm:1.10.0":
+  version: 1.10.0
+  resolution: "myzod@npm:1.10.0"
+  checksum: a5d4eee5fed4205683a2e6b4557f7537979f098bd2b6040051fbc5a30d2bd6dcdf8fa20b16703ff8c56c69763bc226505d0c3155ac0bc7969e36773901d9af04
+  languageName: node
+  linkType: hard
+
 "natural-compare-lite@npm:^1.4.0":
   version: 1.4.0
   resolution: "natural-compare-lite@npm:1.4.0"
@@ -8210,6 +8308,39 @@ __metadata:
     ts-node: 10.9.1
     tsconfig-paths: 4.1.1
     typescript: 4.9.4
+  languageName: unknown
+  linkType: soft
+
+"nest-js-modular-validate-example@workspace:examples/validate":
+  version: 0.0.0-use.local
+  resolution: "nest-js-modular-validate-example@workspace:examples/validate"
+  dependencies:
+    "@nestjs-modular/validate": 1.0.0
+    "@nestjs/cli": 9.1.5
+    "@nestjs/common": 9.2.1
+    "@nestjs/core": 9.2.1
+    "@nestjs/platform-express": 9.2.1
+    "@nestjs/schematics": 9.0.3
+    "@types/express": 4.17.14
+    "@types/node": 16.18.8
+    "@valivali/myzod": 1.0.0
+    "@valivali/runtypes": 1.0.0
+    "@valivali/superstruct": 1.0.0
+    "@valivali/yup": 1.0.0
+    "@valivali/zod": 1.0.0
+    myzod: 1.10.0
+    reflect-metadata: 0.1.13
+    rimraf: 3.0.2
+    runtypes: 6.6.0
+    rxjs: 7.6.0
+    source-map-support: 0.5.21
+    superstruct: 1.0.3
+    ts-loader: 9.4.2
+    ts-node: 10.9.1
+    tsconfig-paths: 4.1.1
+    typescript: 4.9.4
+    yup: 1.0.2
+    zod: 3.20.2
   languageName: unknown
   linkType: soft
 
@@ -8856,6 +8987,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"property-expr@npm:^2.0.5":
+  version: 2.0.5
+  resolution: "property-expr@npm:2.0.5"
+  checksum: 4ebe82ce45aaf1527e96e2ab84d75d25217167ec3ff6378cf83a84fb4abc746e7c65768a79d275881602ae82f168f9a6dfaa7f5e331d0fcc83d692770bcce5f1
+  languageName: node
+  linkType: hard
+
 "proxy-addr@npm:~2.0.7":
   version: 2.0.7
   resolution: "proxy-addr@npm:2.0.7"
@@ -9364,6 +9502,13 @@ __metadata:
   dependencies:
     queue-microtask: ^1.2.2
   checksum: cb4f97ad25a75ebc11a8ef4e33bb962f8af8516bb2001082ceabd8902e15b98f4b84b4f8a9b222e5d57fc3bd1379c483886ed4619367a7680dad65316993021d
+  languageName: node
+  linkType: hard
+
+"runtypes@npm:6.6.0":
+  version: 6.6.0
+  resolution: "runtypes@npm:6.6.0"
+  checksum: 86cb4705285385ce3e50f8dbe1650001da1c375407735296cf86c13f5af2da408ee7f6d22849d5f849f87cf6416d841dd618548be0509886a0236294b22c551d
   languageName: node
   linkType: hard
 
@@ -9991,6 +10136,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"superstruct@npm:1.0.3":
+  version: 1.0.3
+  resolution: "superstruct@npm:1.0.3"
+  checksum: 761790bb111e6e21ddd608299c252f3be35df543263a7ebbc004e840d01fcf8046794c274bcb351bdf3eae4600f79d317d085cdbb19ca05803a4361840cc9bb1
+  languageName: node
+  linkType: hard
+
 "supports-color@npm:^5.3.0":
   version: 5.5.0
   resolution: "supports-color@npm:5.5.0"
@@ -10131,6 +10283,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"tiny-case@npm:^1.0.3":
+  version: 1.0.3
+  resolution: "tiny-case@npm:1.0.3"
+  checksum: 3f7a30c39d5b0e1bc097b0b271bec14eb5b836093db034f35a0de26c14422380b50dc12bfd37498cf35b192f5df06f28a710712c87ead68872a9e37ad6f6049d
+  languageName: node
+  linkType: hard
+
 "tiny-glob@npm:^0.2.9":
   version: 0.2.9
   resolution: "tiny-glob@npm:0.2.9"
@@ -10177,6 +10336,13 @@ __metadata:
   version: 1.0.1
   resolution: "toidentifier@npm:1.0.1"
   checksum: 952c29e2a85d7123239b5cfdd889a0dde47ab0497f0913d70588f19c53f7e0b5327c95f4651e413c74b785147f9637b17410ac8c846d5d4a20a5a33eb6dc3a45
+  languageName: node
+  linkType: hard
+
+"toposort@npm:^2.0.2":
+  version: 2.0.2
+  resolution: "toposort@npm:2.0.2"
+  checksum: d64c74b570391c9432873f48e231b439ee56bc49f7cb9780b505cfdf5cb832f808d0bae072515d93834dd6bceca5bb34448b5b4b408335e4d4716eaf68195dcb
   languageName: node
   linkType: hard
 
@@ -10407,6 +10573,13 @@ __metadata:
   version: 0.8.1
   resolution: "type-fest@npm:0.8.1"
   checksum: d61c4b2eba24009033ae4500d7d818a94fd6d1b481a8111612ee141400d5f1db46f199c014766b9fa9b31a6a7374d96fc748c6d688a78a3ce5a33123839becb7
+  languageName: node
+  linkType: hard
+
+"type-fest@npm:^2.19.0":
+  version: 2.19.0
+  resolution: "type-fest@npm:2.19.0"
+  checksum: a4ef07ece297c9fba78fc1bd6d85dff4472fe043ede98bd4710d2615d15776902b595abf62bd78339ed6278f021235fb28a96361f8be86ed754f778973a0d278
   languageName: node
   linkType: hard
 
@@ -11014,5 +11187,24 @@ __metadata:
   version: 0.1.0
   resolution: "yocto-queue@npm:0.1.0"
   checksum: f77b3d8d00310def622123df93d4ee654fc6a0096182af8bd60679ddcdfb3474c56c6c7190817c84a2785648cdee9d721c0154eb45698c62176c322fb46fc700
+  languageName: node
+  linkType: hard
+
+"yup@npm:1.0.2":
+  version: 1.0.2
+  resolution: "yup@npm:1.0.2"
+  dependencies:
+    property-expr: ^2.0.5
+    tiny-case: ^1.0.3
+    toposort: ^2.0.2
+    type-fest: ^2.19.0
+  checksum: 1cb9c490853739aa0c576c87a81008dd3612985dd2da5ff6127b77640465fa906bb47ed30a7c97824b4a3f525010b2d7f614ebbd442b02e16433675c4d66f0b8
+  languageName: node
+  linkType: hard
+
+"zod@npm:3.20.2":
+  version: 3.20.2
+  resolution: "zod@npm:3.20.2"
+  checksum: 04172f7e9350372684ccd298d4716908edc9113751295b6c4e1b3ea84e2af8997e504b33ba36f4741417bb2a5dc90bfd40501f6b0e7389df10e42a63d6d8366c
   languageName: node
   linkType: hard
